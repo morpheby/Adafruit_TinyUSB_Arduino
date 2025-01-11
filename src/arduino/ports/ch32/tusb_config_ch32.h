@@ -41,7 +41,11 @@ extern "C" {
 #define CFG_TUSB_MCU OPT_MCU_CH32V307
 #endif
 
+#if USE_FREERTOS
+#define CFG_TUSB_OS OPT_OS_FREERTOS
+#else
 #define CFG_TUSB_OS OPT_OS_NONE
+#endif
 
 #ifndef CFG_TUSB_DEBUG
 #define CFG_TUSB_DEBUG 0
