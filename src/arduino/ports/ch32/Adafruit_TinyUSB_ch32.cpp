@@ -41,17 +41,17 @@ extern "C" {
 
 // USBD (fsdev)
 #if CFG_TUD_WCH_USBIP_FSDEV
-__attribute__((interrupt("WCH-Interrupt-fast"))) void
+__attribute__((interrupt)) void
 USB_LP_CAN1_RX0_IRQHandler(void) {
   tud_int_handler(0);
 }
 
-__attribute__((interrupt("WCH-Interrupt-fast"))) void
+__attribute__((interrupt)) void
 USB_HP_CAN1_TX_IRQHandler(void) {
   tud_int_handler(0);
 }
 
-__attribute__((interrupt("WCH-Interrupt-fast"))) void
+__attribute__((interrupt)) void
 USBWakeUp_IRQHandler(void) {
   tud_int_handler(0);
 }
@@ -92,7 +92,9 @@ __attribute__((interrupt("WCH-Interrupt-fast"))) void USBHS_IRQHandler(void) {
 #endif
 
 void yield(void) {
+#if !(OPT_OS_FREERTOS)
   tud_task();
+#endif
   if (tud_cdc_connected()) {
     tud_cdc_write_flush();
   }
