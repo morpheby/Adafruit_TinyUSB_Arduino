@@ -41,17 +41,17 @@ extern "C" {
 
 // USBD (fsdev)
 #if CFG_TUD_WCH_USBIP_FSDEV
-__attribute__((interrupt)) void
+__attribute__((interrupt("WCH-Interrupt-fast"))) void
 USB_LP_CAN1_RX0_IRQHandler(void) {
   tud_int_handler(0);
 }
 
-__attribute__((interrupt)) void
+__attribute__((interrupt("WCH-Interrupt-fast"))) void
 USB_HP_CAN1_TX_IRQHandler(void) {
   tud_int_handler(0);
 }
 
-__attribute__((interrupt)) void
+__attribute__((interrupt("WCH-Interrupt-fast"))) void
 USBWakeUp_IRQHandler(void) {
   tud_int_handler(0);
 }
